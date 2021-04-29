@@ -24,23 +24,23 @@ namespace uri {
         uriFreeUriMembersA(&value);
     }
 
-    auto uri::host() -> std::string_view {
+    auto uri::host() const -> std::string_view {
         return to_string(value.hostText);
     }
 
-    auto uri::fragment() -> std::string_view {
+    auto uri::fragment() const -> std::string_view {
         return to_string(value.fragment);
     }
 
-    auto uri::scheme() -> std::string_view {
+    auto uri::scheme() const -> std::string_view {
         return to_string(value.scheme);
     }
 
-    auto uri::pathname() -> std::string {
+    auto uri::pathname() const -> std::string {
         return "/" + ext::join(path_segments(), "/");
     }
 
-    auto uri::path_segments() -> std::vector<std::string_view> {
+    auto uri::path_segments() const -> std::vector<std::string_view> {
         auto result = std::vector<std::string_view>();
 
         for (auto segment = value.pathHead; segment; segment = segment->next) {
@@ -50,11 +50,11 @@ namespace uri {
         return result;
     }
 
-    auto uri::port() -> std::string_view {
+    auto uri::port() const -> std::string_view {
         return to_string(value.portText);
     }
 
-    auto uri::query() -> std::string_view {
+    auto uri::query() const -> std::string_view {
         return to_string(value.query);
     }
 }

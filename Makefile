@@ -5,7 +5,7 @@ STD = c++20
 
 library = lib$(project)
 $(library).type = shared
-define library.libs
+define $(library).libs
  uriparser
 endef
 
