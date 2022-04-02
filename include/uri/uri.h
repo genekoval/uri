@@ -19,6 +19,7 @@ namespace uri {
     };
 
     class uri {
+        const std::string storage;
         UriUriA value = UriUriA();
     public:
         uri(const std::string& url);

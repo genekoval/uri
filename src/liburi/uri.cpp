@@ -2,21 +2,23 @@
 
 #include <ext/string.h>
 
-namespace uri {
-    static auto to_string(const UriTextRangeA& text) -> std::string_view {
+namespace {
+    auto to_string(const UriTextRangeA& text) -> std::string_view {
         return std::string_view(text.first, text.afterLast);
     }
+}
 
-    uri::uri(const std::string& url) {
+namespace uri {
+    uri::uri(const std::string& url) : storage(ext::trim(url)) {
         const char* error_pos = nullptr;
 
         if (uriParseSingleUriA(
             &value,
-            url.data(),
+            storage.data(),
             &error_pos
         ) != URI_SUCCESS) {
-            const auto diff = error_pos - url.data();
-            throw uri_format_exception(url, diff);
+            const auto diff = error_pos - storage.data();
+            throw uri_format_exception(storage, diff);
         }
     }
 
