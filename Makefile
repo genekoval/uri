@@ -5,11 +5,11 @@ STD = c++20
 
 library = lib$(project)
 $(library).type = shared
-define $(library).libs
- uriparser
-endef
+$(library).libs = uriparser
 
 install := $(library)
 targets := $(install)
+
+files = $(include) $(src) Makefile VERSION
 
 include mkbuild/base.mk
