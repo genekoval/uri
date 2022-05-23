@@ -62,7 +62,7 @@ namespace uri {
 
     auto parse(const std::string& url) -> std::optional<uri> {
         try {
-            return uri(url);
+            return make_optional<uri>(url);
         }
         catch (const uri_format_exception&) {
             return {};

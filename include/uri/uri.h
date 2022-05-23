@@ -24,7 +24,12 @@ namespace uri {
         UriUriA value = UriUriA();
     public:
         uri(const std::string& url);
+
+        uri(const uri&) = delete;
+
         ~uri();
+
+        uri& operator=(const uri&) = delete;
 
         auto host() const -> std::string_view;
 
