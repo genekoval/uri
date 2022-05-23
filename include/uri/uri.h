@@ -1,5 +1,6 @@
 #pragma once
 
+#include <optional>
 #include <stdexcept>
 #include <string>
 #include <string_view>
@@ -39,4 +40,6 @@ namespace uri {
 
         auto query() const -> std::string_view;
     };
+
+    auto parse(const std::string& url) -> std::optional<uri>;
 }

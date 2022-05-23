@@ -59,4 +59,13 @@ namespace uri {
     auto uri::query() const -> std::string_view {
         return to_string(value.query);
     }
+
+    auto parse(const std::string& url) -> std::optional<uri> {
+        try {
+            return uri(url);
+        }
+        catch (const uri_format_exception&) {
+            return {};
+        }
+    }
 }
