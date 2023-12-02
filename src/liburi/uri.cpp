@@ -12,19 +12,14 @@ namespace uri {
     uri::uri(const std::string& url) : storage(ext::trim(url)) {
         const char* error_pos = nullptr;
 
-        if (uriParseSingleUriA(
-            &value,
-            storage.data(),
-            &error_pos
-        ) != URI_SUCCESS) {
+        if (uriParseSingleUriA(&value, storage.data(), &error_pos) !=
+            URI_SUCCESS) {
             const auto diff = error_pos - storage.data();
             throw uri_format_exception(storage, diff);
         }
     }
 
-    uri::~uri() {
-        uriFreeUriMembersA(&value);
-    }
+    uri::~uri() { uriFreeUriMembersA(&value); }
 
     auto uri::host() const -> std::string_view {
         return to_string(value.hostText);

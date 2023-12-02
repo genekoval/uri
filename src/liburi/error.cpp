@@ -7,14 +7,11 @@ namespace uri {
     ) :
         uri_format_exception::runtime_error("invalid URI"),
         m_value(value),
-        m_error_pos(error_pos)
-    {}
+        m_error_pos(error_pos) {}
 
     auto uri_format_exception::error_pos() -> std::size_t {
         return m_error_pos;
     }
 
-    auto uri_format_exception::value() -> std::string_view {
-        return m_value;
-    }
+    auto uri_format_exception::value() -> std::string_view { return m_value; }
 }
